@@ -17,15 +17,9 @@ import { ThreadService } from 'src/app/_services/thread/thread.service';
 })
 export class ThreadChatComponent {
   @ViewChild('threadBody') threadBody!: ElementRef;
-
-
-
-
-  lastMessageIndex: number = 0;
   isLoading: boolean = false
   idSelectedThreadChat: string = ""
   chatContent: string = ""
-
 
   chatList: ChatList[] = []
 
@@ -34,41 +28,26 @@ export class ThreadChatComponent {
     message: ""
   }
 
-  constructor(private route: ActivatedRoute, private chatService: ChatService, private authService: AuthService, private navigate: Router, private threadService: ThreadService) {
+  constructor(private route: ActivatedRoute,
+    private chatService: ChatService,
+    private navigate: Router,
+    private threadService: ThreadService
+  ) {
     this.route.params.subscribe((param) => {
-      this.idSelectedThreadChat = String(param['id']);  
-      if (this.idSelectedThreadChat != "") {
-        this.chatList = []
-        const accessToken = this.authService.getUser().accessToken
-        const _id = this.authService.getUser().user._id
-        this.threadService.getOneThread(this.idSelectedThreadChat, accessToken, _id).subscribe((res: any) => {
-          for (const m of res.metadata.content) {
-            this.chatList.push({
-              role: m.text.role,
-              message: m.text.value
-            })
-          }
-          setTimeout(() => { this.scrollToMarkedElement(); }, 100)
-
-          
-        })
-        
-      } else {
-        this.chatList = []
-      }
+      this.idSelectedThreadChat = String(param['id']);
+      this.getThreadChat()
     });
   }
   onSubmit() {
     if (this.chatContent != '') {
-      
+
       this.chatRequest.message = this.chatContent
-      if(this.idSelectedThreadChat == "undefined"){
+      if (this.idSelectedThreadChat == "undefined") {
         this.chatRequest._id = ""
-      }else{
+      } else {
         this.chatRequest._id = this.idSelectedThreadChat
       }
-      
-      
+
       this.chatList.push({
         role: 'user',
         message: this.chatContent
@@ -77,14 +56,8 @@ export class ThreadChatComponent {
       this.chatContent = '';
       this.isLoading = true;
 
-      setTimeout(() => { this.scrollToMarkedElement(); }, 1)
-
-      const accessToken = this.authService.getUser().accessToken
-      const _id = this.authService.getUser().user._id
-
-
       // call api ở đây
-      this.chatService.createChat(this.chatRequest, accessToken, _id).subscribe((res: any) => {
+      this.chatService.createChat(this.chatRequest).subscribe((res: any) => {
         this.chatList.push({
           role: res.metadata[0].role,
           message: res.metadata[0].content[0].text.value
@@ -93,12 +66,12 @@ export class ThreadChatComponent {
         if (this.idSelectedThreadChat == "undefined") {
           this.navigate.navigate(['home/' + res.metadata[0].thread_id])
         }
-
-        setTimeout(() => { this.scrollToMarkedElement(); }, 1)
+        setTimeout(() => { this.scrollToMarkedElement(); }, 10)
       })
+
+      setTimeout(() => { this.scrollToMarkedElement(); }, 10)
     }
   }
-
 
   scrollToMarkedElement() {
     const markedElement = this.threadBody.nativeElement.querySelector('[data-scroll-to="true"]');
@@ -107,9 +80,18 @@ export class ThreadChatComponent {
     }
   }
 
-
-
-  ngAfterViewInit() {
-    this.scrollToMarkedElement()
+  getThreadChat() {
+    this.chatList = []
+    if (this.idSelectedThreadChat != "") {
+      this.threadService.getOneThread(this.idSelectedThreadChat).subscribe((res: any) => {
+        for (const m of res.metadata.content) {
+          this.chatList.push({
+            role: m.text.role,
+            message: m.text.value
+          })
+        }
+        setTimeout(() => { this.scrollToMarkedElement(); }, 100)
+      })
+    }
   }
 }
