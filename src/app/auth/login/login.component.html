@@ -1,0 +1,31 @@
+<div class="container login-container">
+    <div class="login-form">
+        <div class="logo-container">
+            <h1 class="logo-text">Welcome Back</h1>
+        </div>
+        <form>
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control"  [(ngModel)]="user.email"  name="user.email" >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control"  [(ngModel)]="user.password" name="user.password" >
+            </div>
+            <div class="text-center mt-3">
+                <button type="submit" class="btn btn-primary btn-login btn-block w-75 " (click)="signin()">Login</button>
+            </div>
+            <div class="text-center mt-3">
+                <p>Don't have an account? <a routerLink="/register"> Register </a></p>
+                <p>Don't remember password? <a routerLink="/forgot-password"> Forgot Password </a></p>
+            </div>
+            <hr>
+            <div class="text-center justify-content-center mt-3 d-flex flex-column align-items-center">
+                <button type="button" class="btn  btn-google m-2 w-75">Login with Google</button>
+                <button type="button" class="btn  btn-google m-2 w-75">Login with Microsoft</button>
+                <button type="button" class="btn  btn-google m-2 w-75">Login with Apple</button>
+            </div>
+        </form>
+    </div>
+</div>

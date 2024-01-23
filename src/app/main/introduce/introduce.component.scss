@@ -1,0 +1,32 @@
+.header {
+    height: 120px;
+    width: 100%;
+}
+.container-fluid{
+    height: 100vh;
+}
+.fh{
+    height: 100vh;
+}
+.custom-align { 
+    height: 550px;
+    
+}
+.h{
+    height: 60px;
+}
+.bg-d9d293{
+    background-color: #d9d293;
+}
+
+.my-block {
+    display: none;
+  }
+  
+  @media (min-width: 992px) {
+    .my-block {
+      display: block;
+    }
+  }
+
+

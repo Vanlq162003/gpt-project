@@ -1,0 +1,47 @@
+.fh{
+  height: 100vh;
+}
+.sidebar_header{
+  height: 10%;
+}
+.sidebar_main{
+  height: 80%;
+  overflow-y: auto;
+}
+.sidebar_footer{
+  height: 10%;
+}
+
+::-webkit-scrollbar {
+  width: 12px; /* Độ rộng của thanh cuộn */
+}
+
+/* Thanh cuộn trên trình duyệt WebKit (Chrome, Safari) */
+::-webkit-scrollbar-thumb {
+  background-color: #4CAF50; /* Màu nền của thanh cuộn */
+  border-radius: 6px; /* Độ cong của bo tròn */
+}
+
+/* Thanh cuộn trên trình duyệt Firefox */
+::-moz-scrollbar-thumb {
+  background-color: #4CAF50;
+  border-radius: 6px;
+}
+
+/* Thanh cuộn trên trình duyệt Microsoft Edge và IE */
+::-ms-scrollbar-thumb {
+  background-color: #4CAF50;
+  border-radius: 6px;
+}
+
+.img-fluid{
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.pl-35{
+  padding-left: 35px;
+}
+.w-85{
+  width: 85%;
+}

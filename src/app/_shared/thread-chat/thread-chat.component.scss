@@ -1,0 +1,61 @@
+.w-80{
+  width: 80%;
+}
+.img-fluid{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.pl-40{
+  padding-left: 40px;
+}
+.font-weight-bold{
+  font-weight: bold;
+}
+.thread_body{
+  height: 80%;
+  overflow-y: auto;
+
+}
+.h-80{
+  height: 80%;
+}
+
+.fh{
+  height: 100vh;
+}
+
+::-webkit-scrollbar {
+  width: 0px; /* Độ rộng của thanh cuộn */
+}
+.h-10{
+  height: 10%;
+}
+.h-60{
+  height: 60px;
+}
+
+
+
+.list-group-item.typing {
+  animation: typing 2s infinite;
+}
+
+@keyframes typing {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+
+
+

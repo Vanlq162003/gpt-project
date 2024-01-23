@@ -1,0 +1,34 @@
+<div class="container-fluid d-flex flex-column flex-grow-1 fh ">
+    <header class="row p-2 h-10 mt-auto">
+        <div class="text-center">
+        </div>
+    </header>
+    <div  #threadBody class="row flex-grow-1 p-5 w-80 mx-auto thread_body fh ">
+        <div *ngIf="chatList.length == 0">
+            <div class=" row chat-heros mt-3 d-flex flex-column pb-2 list-group typing">
+                Hãy đặt câu hỏi cho tôi !
+            </div>
+        </div>
+        <div class=" row chat-heros mt-3 d-flex flex-column pb-2  justify-content-end flex-1">
+            <div class="list-group-item pb-5" *ngFor="let message of chatList">
+                <div class="hero d-flex flex-row justify-content-start align-items-center">
+                    <img class="img-fluid mr-3 " src="https://avatars.githubusercontent.com/u/6750514?v=4" alt="Ảnh đại diện của Lê Quang Văn">
+                    <div class="w-75 overflow-custom font-weight-bold">
+                        {{message.role}}
+                    </div>
+                </div>
+                <div class="content d-flex flex-column pl-40 pt-2">
+                    {{message.message}}
+                </div>
+            </div>
+            <div class="list-group-item pb-5 typing" *ngIf="isLoading"> Đang tìm kiếm câu trả lời... </div>
+            <div class="list-group-item pb-5 typing" data-scroll-to="true"></div>
+        </div>
+    </div>
+    <form class="row pb-4 h-10 fh ">
+        <div class="w-75 m-auto ">
+            <input type="text" class="form-control h-60 " [(ngModel)]="chatContent" (keydown.enter)="onSubmit()"
+                placeholder="Chat..." name="chatContent" [disabled]="isLoading">
+        </div>
+    </form>
+</div>

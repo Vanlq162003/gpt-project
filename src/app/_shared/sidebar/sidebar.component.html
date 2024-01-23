@@ -1,0 +1,26 @@
+<div class="container-fluid">
+    <div class="row fh">
+        <div class="sidebar_header mb-auto text-center pt-3 ">
+            <button type="button" class="btn btn-secondary text-center w-75" routerLink="/home">New Chat</button>
+        </div>
+        <div class="sidebar_main mb-auto p-3">
+            <div *ngIf="threadList.length > 0">
+            <div class="list-group"  *ngFor="let thread of threadList">
+                <li class="list-group-item list-group-item-action mt-3" routerLink="/home/{{thread._id}}">{{thread.name_thread}}</li>
+            </div>
+            </div>
+        </div>
+        <div class="sidebar_footer mt-auto mb-auto pt-3  d-flex align-items-center" ngbDropdown >
+            <img  id="dropdown1" ngbDropdownToggle class="img-fluid mr-3 rounded-circle" src="https://avatars.githubusercontent.com/u/6750514?v=4" alt="Ảnh đại diện của Lê Quang Văn">
+            <div class="pl-5">
+                <div class="pl-35">{{name}}</div>
+            </div>
+            <div ngbDropdownMenu aria-labelledby="dropdown1" class="w-85 ">
+                <!-- items as buttons -->
+                <button ngbDropdownItem>Chat chat</button>
+                <button ngbDropdownItem>Setting</button>
+                <button ngbDropdownItem (click)="Logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+</div>

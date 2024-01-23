@@ -1,0 +1,42 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Nhập mã OTP</h4>
+    </div>
+    <form>
+        <div class="modal-body">
+            <div class="form-group">
+                <input type="text" class="form-control" id="otp" name="otp">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="onClose('1')">Nhập</button>
+        </div>
+    </form>
+</ng-template>
+
+<div class="container login-container">
+    <div class="login-form">
+        <div class="logo-container">
+            <h1 class="logo-text">Register</h1>
+        </div>
+
+        <form>
+            <div class="form-group">
+                <label for="email">Name</label>
+                <input type="text" class="form-control" [(ngModel)]="user.name"  name="user.name" >
+            </div>
+            <div class="form-group">
+                <label for="password">Email</label>
+                <input type="text" class="form-control"   [(ngModel)]="user.email"   name= "user.email" >
+            </div>
+            <div class="form-group">
+                <label for="password"> Password:</label>
+                <input type="password" class="form-control"  [(ngModel)]="user.password"  name="user.password">
+            </div>
+            <div class="text-center mt-3">
+                <button type="button" class="btn btn-primary btn-login btn-block w-75 "
+                (click)="register()">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
